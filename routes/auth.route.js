@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const AuthController = require('../controllers').AuthController;
 
-module.exports = function (app) {
+module.exports = function(app) {
 
     app.post('/auth/register', bodyParser.json(), async (req, res) => {
         if(req.body.firstname && req.body.lastname && req.body.login && req.body.password && req.body.email) {

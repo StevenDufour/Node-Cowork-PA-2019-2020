@@ -1,20 +1,24 @@
 module.exports = function(sequelize, DataTypes) {
-    const Session = sequelize.define('Session', {
+    const Timetable = sequelize.define('Timetable', {
         id: {
             type: DataTypes.BIGINT,
             primaryKey: true,
             autoIncrement: true
         },
-        token: {
+        day_name: {
             type: DataTypes.STRING
+        },
+        start_time: {
+            type: DataTypes.TIME
+        },
+        end_time: {
+            type: DataTypes.TIME
         }
     }, {
         freezeTableName: true,
         underscored: true,
-        timestamps: true
+        timestamps: false
     });
-    /**Session.associate = (models) => {
-        Session.belongsTo(models.User);
-    };**/
-    return Session;
-};
+    return Timetable;
+
+}

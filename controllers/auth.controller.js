@@ -5,7 +5,13 @@ const SecurityUtil = require('../utils').SecurityUtil;
 
 class AuthController {
 
-    static register(login, email, password) {
+    /**
+     * @param login
+     * @param email
+     * @param password
+     * @returns {Promise<User>}
+     */
+    static subscribe(login, email, password) {
         return User.create({
             login,
             email,
@@ -13,6 +19,11 @@ class AuthController {
         });
     }
 
+    /**
+     * @param login
+     * @param password
+     * @returns {Promise<Session|null>}
+     */
     static async login(login, password) {
         const user = await User.findOne({
             where: {
@@ -28,17 +39,17 @@ class AuthController {
             token
         });
         await session.setUser(user);
-        return session
+        return session;
     }
 
     static userFromToken(token) {
         return User.findOne({
-           include: [{
-               model: Session,
-               where: {
-                   token
-               }
-           }]
+            include: [{
+                model: Session,
+                where: {
+                    token
+                }
+            }]
         });
     }
 }

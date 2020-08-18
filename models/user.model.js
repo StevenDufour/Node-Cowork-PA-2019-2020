@@ -23,10 +23,14 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         freezeTableName: true,
         underscored: true,
-        timestamps: true
+        timestamps: false
     });
-    User.associate = (models) => {
-        User.hasMany(models.Session);
-    };
+    /**User.associate = (models) => {
+        User.hasMany(models.Session, {onDelete: 'cascade'});
+        User.hasMany(models.Order, { onDelete: 'cascade' });
+        User.hasMany(models.Reservation, {onDelete: 'cascade'});
+        User.hasMany(models.Invitation, {onDelete: 'cascade'});
+        User.belongsTo(models.Subscription);
+    };**/
     return User;
 };
