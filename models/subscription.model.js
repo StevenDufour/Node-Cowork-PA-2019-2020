@@ -16,8 +16,8 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
         timestamps: false
     });
-    /**Subscription.associate = (models) => {
+    Subscription.associate = (models) => {
         Subscription.hasMany(models.User)
-    };**/
+    };
     return Subscription;
 }

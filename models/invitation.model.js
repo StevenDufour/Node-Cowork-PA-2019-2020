@@ -10,9 +10,9 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
         timestamps: false
     });
-    /**Invitation.associate = (models) => {
+    Invitation.associate = (models) => {
         models.User.belongsToMany(models.Event, {through: Invitation});
         models.Event.belongsToMany(models.User, {through: Invitation});
-    };**/
+    };
     return Invitation;
 }

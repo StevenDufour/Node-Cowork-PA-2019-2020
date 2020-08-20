@@ -16,10 +16,10 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
         timestamps: false
     });
-    /**Order.associate = (models) => {
+    Order.associate = (models) => {
         models.User.belongsToMany(models.Product, {through: Order});
         models.Product.belongsToMany(models.User, {through: Order});
-    };**/
+    };
     return Order;
 
 }

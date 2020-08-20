@@ -19,10 +19,10 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
         timestamps: false
     });
-    /**Reservation.associate = (models) => {
+    Reservation.associate = (models) => {
         models.User.belongsToMany(models.Service, {through: Reservation});
         models.Service.belongsToMany(models.User, {through: Reservation});
-    };**/
+    };
     return Reservation;
 
 }

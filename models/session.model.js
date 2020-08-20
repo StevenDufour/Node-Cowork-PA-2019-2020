@@ -13,8 +13,8 @@ module.exports = function(sequelize, DataTypes) {
         underscored: true,
         timestamps: true
     });
-    /**Session.associate = (models) => {
+    Session.associate = (models) => {
         Session.belongsTo(models.User);
-    };**/
+    };
     return Session;
 };

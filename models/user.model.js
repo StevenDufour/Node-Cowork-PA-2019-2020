@@ -19,18 +19,22 @@ module.exports = function(sequelize, DataTypes) {
         },
         email: {
             type: DataTypes.STRING
+        },
+        type: {
+            type: DataTypes.STRING,
+            defaultValue: "Client"
         }
     }, {
         freezeTableName: true,
         underscored: true,
         timestamps: false
     });
-    /**User.associate = (models) => {
+    User.associate = (models) => {
         User.hasMany(models.Session, {onDelete: 'cascade'});
         User.hasMany(models.Order, { onDelete: 'cascade' });
         User.hasMany(models.Reservation, {onDelete: 'cascade'});
         User.hasMany(models.Invitation, {onDelete: 'cascade'});
         User.belongsTo(models.Subscription);
-    };**/
+    };
     return User;
 };
