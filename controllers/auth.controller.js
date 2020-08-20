@@ -6,16 +6,21 @@ const SecurityUtil = require('../utils').SecurityUtil;
 class AuthController {
 
     /**
+     * @param firstname
+     * @param lastname
      * @param login
      * @param email
      * @param password
      * @returns {Promise<User>}
      */
-    static subscribe(login, email, password) {
+    static register(firstname, lastname, login, password, email, type) {
         return User.create({
+            firstname,
+            lastname,
             login,
+            password: SecurityUtil.hashPassword(password),
             email,
-            password: SecurityUtil.hashPassword(password)
+            type
         });
     }
 
@@ -40,6 +45,24 @@ class AuthController {
         });
         await session.setUser(user);
         return session;
+    }
+
+    static async logout(id) {
+        const user = await User.findOne({
+            where: {
+                id: id,
+            }
+        });
+        const session = await Session.findOne({
+            where:{
+                UserId : user.id
+            }
+        });
+        await Session.destroy({
+            where:{
+                UserId : user.id
+            }
+        });
     }
 
     static userFromToken(token) {
