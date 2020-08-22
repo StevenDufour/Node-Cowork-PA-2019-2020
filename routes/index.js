@@ -5,4 +5,5 @@ module.exports = function () {
     require('./product.route')(...arguments);
     require('./site.route')(...arguments);
     require('./user.route')(...arguments);
+    require('./timetable.route')(...arguments);
 }
