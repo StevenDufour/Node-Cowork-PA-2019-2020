@@ -4,5 +4,7 @@ module.exports = {
     EventController: require('./event.controller'),
     ProductController: require('./product.controller'),
     SiteController: require('./site.controller'),
-    UserController: require('./user.controller')
+    UserController: require('./user.controller'),
+    ServiceController: require('./service.controller'),
+    TimetableController: require('./timetable.controller')
 }
