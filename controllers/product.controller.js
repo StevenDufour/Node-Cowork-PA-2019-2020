@@ -21,6 +21,15 @@ class ProductController {
         });
     }
 
+    static selectProductPriceById(id){
+        return Product.findOne({
+            attributes:['price'],
+            where: {
+                id: id
+            }
+        });
+    }
+
     static selectAllProduct(){
         return Product.findAll();
     }
