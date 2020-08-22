@@ -19,6 +19,9 @@ module.exports = function(sequelize, DataTypes) {
         underscored: true,
         timestamps: false
     });
+    Timetable.associate = (models) => {
+        Timetable.belongsTo(models.Site);
+    };
     return Timetable;
 
 }

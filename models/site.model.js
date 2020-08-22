@@ -16,6 +16,9 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
         timestamps: false
     });
+    Site.associate = (models) => {
+        Site.hasMany(models.Timetable)
+    };
     return Site;
 
 }
