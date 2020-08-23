@@ -47,6 +47,10 @@ class UserController {
         });
     }
 
+    static getEmail(id) {
+        return
+    }
+
 
 
 }

@@ -1,5 +1,6 @@
 const models = require('../models');
 const Order = models.Order;
+const OrderProduct = models.OrderProduct;
 
 class OrderController {
 
@@ -62,6 +63,15 @@ class OrderController {
                 id: id
             }
         });
+    }
+
+    static addProduct(quantity, order_id, product_id){
+        const orderProduct = OrderProduct.create({
+            quantity: quantity,
+            OrderId: order_id,
+            ProductId: product_id
+        });
+        return orderProduct;
     }
 
 
