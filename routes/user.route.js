@@ -3,7 +3,7 @@ const UserController = require('../controllers').UserController;
 
 module.exports = function(app) {
 
-    app.post('/user/getById', bodyParser.json(), async (req, res) => {
+    app.post('/api/user/getById', bodyParser.json(), async (req, res) => {
         if(req.body.id) {
             try {
                 const user = await UserController.selectUserById(req.body.id);
@@ -16,7 +16,7 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/user/getAll', bodyParser.json(), async (req, res) => {
+    app.get('/api/user/getAll', bodyParser.json(), async (req, res) => {
         try{
             const users = await UserController.selectAllUser();
             res.status(201).json(users);
@@ -25,7 +25,7 @@ module.exports = function(app) {
         }
     });
 
-    app.put('/user/update', bodyParser.json(), async (req, res) => {
+    app.put('/api/user/update', bodyParser.json(), async (req, res) => {
         if(req.body.id && req.body.firstname && req.body.lastname && req.body.email && req.body.pseudo && req.body.password){
             try{
                 const user = await UserController.updateUser(req.body.id,
@@ -43,7 +43,7 @@ module.exports = function(app) {
         }
     });
 
-    app.put('/user/updateType', bodyParser.json(), async (req, res) => {
+    app.put('/api/user/updateType', bodyParser.json(), async (req, res) => {
         if(req.body.id && req.body.type){
             try{
                 const user = await UserController.updateTypeUser(req.body.id,
@@ -57,7 +57,7 @@ module.exports = function(app) {
         }
     });
 
-    app.delete('/user/delete', bodyParser.json(), async (req, res) => {
+    app.delete('/api/user/delete', bodyParser.json(), async (req, res) => {
         if(req.body.id){
             try {
                 await UserController.deleteUser(req.body.id);

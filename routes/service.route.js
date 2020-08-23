@@ -3,7 +3,7 @@ const ServiceController = require('../controllers').ServiceController;
 
 module.exports = function (app) {
 
-    app.post('/service/create', bodyParser.json(), async (req, res) => {
+    app.post('/api/service/create', bodyParser.json(), async (req, res) => {
         if(req.body.name && req.body.type && req.body.amount && req.body.description && req.body.price) {
             try {
                 const service = await ServiceController.createService(req.body.name,
@@ -20,7 +20,7 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/service/getById', bodyParser.json(), async (req, res) => {
+    app.post('/api/service/getById', bodyParser.json(), async (req, res) => {
         if(req.body.id) {
             try {
                 const service = await ServiceController.selectServiceById(req.body.id);
@@ -33,7 +33,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/service/getAll', bodyParser.json(), async (req, res) => {
+    app.get('/api/service/getAll', bodyParser.json(), async (req, res) => {
         try{
             const services = await ServiceController.selectAllService();
             res.status(201).json(services);
@@ -42,7 +42,7 @@ module.exports = function (app) {
         }
     });
 
-    app.put('/service/update', bodyParser.json(), async (req, res) => {
+    app.put('/api/service/update', bodyParser.json(), async (req, res) => {
         if(req.body.id && req.body.name && req.body.type && req.body.amount && req.body.description && req.body.price){
             try{
                 const service = await ServiceController.updateService(req.body.id,
@@ -60,7 +60,7 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/service/delete', bodyParser.json(), async (req, res) => {
+    app.delete('/api/service/delete', bodyParser.json(), async (req, res) => {
         if(req.body.id){
             try {
                 await ServiceController.deleteService(req.body.id);

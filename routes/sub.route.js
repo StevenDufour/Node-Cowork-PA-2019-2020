@@ -3,7 +3,7 @@ const SubController = require('../controllers').SubController;
 
 module.exports = function (app) {
 
-    app.post('/sub/create', bodyParser.json(), async (req, res) => {
+    app.post('/api/sub/create', bodyParser.json(), async (req, res) => {
         if(req.body.name && req.body.description) {
             try {
                 const sub = await SubController.createSub(req.body.name,
@@ -17,7 +17,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/sub/getAll', bodyParser.json(), async (req, res) => {
+    app.get('/api/sub/getAll', bodyParser.json(), async (req, res) => {
         try{
             const subs = await SubController.selectAllSub();
             res.status(201).json(subs);
@@ -26,7 +26,7 @@ module.exports = function (app) {
         }
     });
 
-    app.put('/sub/update', bodyParser.json(), async (req, res) => {
+    app.put('/api/sub/update', bodyParser.json(), async (req, res) => {
         if(req.body.id && req.body.name && req.body.description){
             try{
                 const sub = await SubController.updateSub(req.body.id,
@@ -41,7 +41,7 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/sub/delete', bodyParser.json(), async (req, res) => {
+    app.delete('/api/sub/delete', bodyParser.json(), async (req, res) => {
         if(req.body.id){
             try {
                 await SubController.deleteSub(req.body.id);

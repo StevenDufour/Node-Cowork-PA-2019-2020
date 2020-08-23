@@ -3,7 +3,7 @@ const ProductController = require('../controllers').ProductController;
 
 module.exports = function (app) {
 
-    app.post('/product/create', bodyParser.json(), async (req, res) => {
+    app.post('/api/product/create', bodyParser.json(), async (req, res) => {
         if(req.body.name && req.body.type && req.body.description && req.body.price && req.body.amount) {
             try {
                 const product = await ProductController.createProduct(req.body.name,
@@ -20,7 +20,7 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/product/getById', bodyParser.json(), async (req, res) => {
+    app.post('/api/product/getById', bodyParser.json(), async (req, res) => {
         if(req.body.id) {
             try {
                 const product = await ProductController.selectProductById(req.body.id);
@@ -33,7 +33,7 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/product/getPriceById', bodyParser.json(), async (req, res) => {
+    app.post('/api/product/getPriceById', bodyParser.json(), async (req, res) => {
         if(req.body.id) {
             try {
                 const product = await ProductController.selectProductPriceById(req.body.id);
@@ -47,7 +47,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/product/getAll', bodyParser.json(), async (req, res) => {
+    app.get('/api/product/getAll', bodyParser.json(), async (req, res) => {
         try{
             const products = await ProductController.selectAllProduct();
             res.status(201).json(products);
@@ -56,7 +56,7 @@ module.exports = function (app) {
         }
     });
 
-    app.put('/product/update', bodyParser.json(), async (req, res) => {
+    app.put('/api/product/update', bodyParser.json(), async (req, res) => {
         if(req.body.id && req.body.name && req.body.type && req.body.description && req.body.price && req.body.amount){
             try{
                 const product = await ProductController.updateProduct(req.body.id,
@@ -74,7 +74,7 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/product/delete', bodyParser.json(), async (req, res) => {
+    app.delete('/api/product/delete', bodyParser.json(), async (req, res) => {
             if(req.body.id){
                 try {
                     await ProductController.deleteProduct(req.body.id);

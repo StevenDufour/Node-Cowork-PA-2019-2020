@@ -3,7 +3,7 @@ const EventController = require('../controllers').EventController;
 
 module.exports = function(app) {
 
-    app.post('/event/create', bodyParser.json(), async (req, res) => {
+    app.post('/api/event/create', bodyParser.json(), async (req, res) => {
         if(req.body.name && req.body.description && req.body.amount && req.body.type) {
             try {
                 const event = await EventController.createEvent(req.body.name,
@@ -19,7 +19,7 @@ module.exports = function(app) {
         }
     });
 
-    app.post('/event/getById', bodyParser.json(), async (req, res) => {
+    app.post('/api/event/getById', bodyParser.json(), async (req, res) => {
         if(req.body.id) {
             try {
                 const event = await EventController.selectEventById(req.body.id);
@@ -32,7 +32,7 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/event/getAll', bodyParser.json(), async (req, res) => {
+    app.get('/api/event/getAll', bodyParser.json(), async (req, res) => {
         try{
             const events = await EventController.selectAllEvent();
             res.status(201).json(events);
@@ -41,7 +41,7 @@ module.exports = function(app) {
         }
     });
 
-    app.put('/event/update', bodyParser.json(), async (req, res) => {
+    app.put('/api/event/update', bodyParser.json(), async (req, res) => {
         if(req.body.id && req.body.name && req.body.description && req.body.amount && req.body.type){
             try{
                 const event = await EventController.updateEvent(req.body.id,
@@ -58,7 +58,7 @@ module.exports = function(app) {
         }
     });
 
-    app.delete('/event/delete', bodyParser.json(), async (req, res) => {
+    app.delete('/api/event/delete', bodyParser.json(), async (req, res) => {
         if(req.body.id){
             try {
                 await EventController.deleteEvent(req.body.id);
