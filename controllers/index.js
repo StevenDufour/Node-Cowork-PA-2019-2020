@@ -6,5 +6,8 @@ module.exports = {
     SiteController: require('./site.controller'),
     UserController: require('./user.controller'),
     ServiceController: require('./service.controller'),
-    TimetableController: require('./timetable.controller')
+    TimetableController: require('./timetable.controller'),
+    InvitationController: require('./invitation.controller'),
+    OrderController: require('./order.controller'),
+    ReservationController: require('./reservation.controller')
 }
