@@ -6,4 +6,6 @@ module.exports = function () {
     require('./site.route')(...arguments);
     require('./user.route')(...arguments);
     require('./timetable.route')(...arguments);
+    require('./invitation.route')(...arguments);
+    require('./order.route')(...arguments);
 }
