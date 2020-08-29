@@ -17,11 +17,11 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/api/invitation/getById', bodyParser.json(), async (req, res) => {
-        if(req.body.id) {
+    app.get('/api/invitation/getById/:id',  async (req, res) => {
+        if(req.params.id) {
             try {
-                const invit = await InvitationController.selectInvitationById(req.body.id);
-                res.status(201).json(invit);
+                const invit = await InvitationController.selectInvitationById(req.params.id);
+                res.status(200).json(invit);
             } catch (err) {
                 res.status(409).end();
             }
@@ -34,7 +34,7 @@ module.exports = function (app) {
         if(req.body.UserId){
             try{
                 const invits = await InvitationController.selectAllInvitationByUser();
-                res.status(201).json(invits);
+                res.status(200).json(invits);
             } catch(err) {
                 res.status(409).end();
             }
@@ -45,11 +45,11 @@ module.exports = function (app) {
 
     });
 
-    app.delete('/api/invitation/delete', bodyParser.json(), async (req, res) => {
-        if(req.body.id){
+    app.delete('/api/invitation/delete/:id', async (req, res) => {
+        if(req.params.id){
             try {
-                await InvitationController.deleteInvitation(req.body.id);
-                res.status(201).send("This invitation is deleted");
+                await InvitationController.deleteInvitation(req.params.id);
+                res.status(200).send("This invitation is deleted");
             } catch (err) {
                 res.status(409).end();
             }

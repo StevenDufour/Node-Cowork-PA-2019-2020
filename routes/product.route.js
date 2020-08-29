@@ -24,7 +24,7 @@ module.exports = function (app) {
         if(req.params.id) {
             try {
                 const product = await ProductController.selectProductById(req.params.id);
-                res.status(201).json(product);
+                res.status(200).json(product);
             } catch (err) {
                 res.status(409).end();
             }
@@ -37,7 +37,7 @@ module.exports = function (app) {
         if(req.body.id) {
             try {
                 const product = await ProductController.selectProductPriceById(req.body.id);
-                res.status(201).json(product);
+                res.status(200).json(product);
             } catch (err) {
                 console.log(err);
                 res.status(409).end();
@@ -50,7 +50,7 @@ module.exports = function (app) {
     app.get('/api/product/getAll', bodyParser.json(), async (req, res) => {
         try{
             const products = await ProductController.selectAllProduct();
-            res.status(201).json(products);
+            res.status(200).json(products);
         } catch(err) {
             res.status(409).end();
         }
@@ -65,7 +65,7 @@ module.exports = function (app) {
                     req.body.description,
                     req.body.price,
                     req.body.amount);
-                res.status(201).json(product);
+                res.status(200).json(product);
             } catch(err) {
                 res.status(409).end();
             }
@@ -78,7 +78,7 @@ module.exports = function (app) {
             if(req.params.id){
                 try {
                     await ProductController.deleteProduct(req.params.id);
-                    res.status(201).send("This product is deleted");
+                    res.status(200).send("This product is deleted");
                 } catch (err) {
                     res.status(409).end();
                 }

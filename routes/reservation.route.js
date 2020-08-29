@@ -20,11 +20,11 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/api/reservation/getById', bodyParser.json(), async (req, res) => {
-        if(req.body.id) {
+    app.get('/api/reservation/getById/:id', async (req, res) => {
+        if(req.params.id) {
             try {
-                const reserv = await ReservationController.selectReservationById(req.body.id);
-                res.status(201).json(reserv);
+                const reserv = await ReservationController.selectReservationById(req.params.id);
+                res.status(200).json(reserv);
             } catch (err) {
                 res.status(409).end();
             }
@@ -37,7 +37,7 @@ module.exports = function (app) {
         if(req.body.UserId){
             try{
                 const reserv = await ReservationController.selectAllReservationByUser();
-                res.status(201).json(reserv);
+                res.status(200).json(reserv);
             } catch(err) {
                 res.status(409).end();
             }
@@ -55,7 +55,7 @@ module.exports = function (app) {
                     req.body.date,
                     req.body.start_time,
                     req.body.end_time);
-                res.status(201).json(reserv);
+                res.status(200).json(reserv);
             } catch(err) {
                 res.status(409).end();
             }
@@ -64,11 +64,11 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/api/reservation/delete', bodyParser.json(), async (req, res) => {
-        if(req.body.id){
+    app.delete('/api/reservation/delete/:id',  async (req, res) => {
+        if(req.params.id){
             try {
-                await ReservationController.deleteReservation(req.body.id);
-                res.status(201).send("This reservation is deleted");
+                await ReservationController.deleteReservation(req.params.id);
+                res.status(200).send("This reservation is deleted");
             } catch (err) {
                 res.status(409).end();
             }

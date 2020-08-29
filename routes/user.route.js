@@ -7,7 +7,7 @@ module.exports = function(app) {
         if(req.params.id) {
             try {
                 const user = await UserController.selectUserById(req.params.id);
-                res.status(201).json(user);
+                res.status(200).json(user);
             } catch (err) {
                 res.status(409).end();
             }
@@ -19,7 +19,7 @@ module.exports = function(app) {
     app.get('/api/user/getAll', bodyParser.json(), async (req, res) => {
         try{
             const users = await UserController.selectAllUser();
-            res.status(201).json(users);
+            res.status(200).json(users);
         } catch(err) {
             res.status(409).end();
         }
@@ -34,7 +34,7 @@ module.exports = function(app) {
                     req.body.email,
                     req.body.pseudo,
                     req.body.password);
-                res.status(201).json(user);
+                res.status(200).json(user);
             } catch(err) {
                 res.status(409).end();
             }
@@ -48,7 +48,7 @@ module.exports = function(app) {
             try{
                 const user = await UserController.updateTypeUser(req.body.id,
                     req.body.type);
-                res.status(201).json(user);
+                res.status(200).json(user);
             } catch(err) {
                 res.status(409).end();
             }
@@ -61,7 +61,7 @@ module.exports = function(app) {
         if(req.params.id){
             try {
                 await UserController.deleteUser(req.params.id);
-                res.status(201).send("This user is deleted");
+                res.status(200).send("This user is deleted");
             } catch (err) {
                 res.status(409).end();
             }

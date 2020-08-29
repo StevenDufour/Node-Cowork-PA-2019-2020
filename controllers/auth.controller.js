@@ -74,7 +74,7 @@ class AuthController {
             include: [{
                 model: Session,
                 where: {
-                    token
+                    token: token
                 }
             }]
         });

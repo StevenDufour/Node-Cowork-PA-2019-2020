@@ -33,11 +33,10 @@ class TimetableController {
         });
     }
 
-    static async deleteTimeTable(day_name, site_id) {
+    static async deleteTimeTable(id) {
         await Timetable.destroy({
             where: {
-                day_name:day_name,
-                SiteId:site_id
+                id:id
             }
         });
     }

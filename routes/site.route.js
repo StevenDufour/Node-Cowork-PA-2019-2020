@@ -17,11 +17,11 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/api/site/getById', bodyParser.json(), async (req, res) => {
-        if(req.body.id) {
+    app.get('/api/site/getById/:id',  async (req, res) => {
+        if(req.params.id) {
             try {
-                const site = await SiteController.selectSiteById(req.body.id);
-                res.status(201).json(site);
+                const site = await SiteController.selectSiteById(req.params.id);
+                res.status(200).json(site);
             } catch (err) {
                 res.status(409).end();
             }
@@ -33,7 +33,7 @@ module.exports = function (app) {
     app.get('/api/site/getAll', bodyParser.json(), async (req, res) => {
         try{
             const sites = await SiteController.selectAllSite();
-            res.status(201).json(sites);
+            res.status(200).json(sites);
         } catch(err) {
             res.status(409).end();
         }
@@ -45,7 +45,7 @@ module.exports = function (app) {
                 const site = await SiteController.updateSite(req.body.id,
                     req.body.name,
                     req.body.description);
-                res.status(201).json(site);
+                res.status(200).json(site);
             } catch(err) {
                 res.status(409).end();
             }
@@ -54,11 +54,11 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/api/site/delete', bodyParser.json(), async (req, res) => {
-        if(req.body.id){
+    app.delete('/api/site/delete/:id',  async (req, res) => {
+        if(req.params.id){
             try {
-                await SiteController.deleteSite(req.body.id);
-                res.status(201).send("This site is deleted");
+                await SiteController.deleteSite(req.params.id);
+                res.status(200).send("This site is deleted");
             } catch (err) {
                 res.status(409).end();
             }

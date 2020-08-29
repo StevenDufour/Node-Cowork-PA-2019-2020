@@ -20,11 +20,11 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/timetable/getBySite', bodyParser.json(), async (req, res) => {
-        if(req.body.SiteId) {
+    app.get('/timetable/getBySite/:id',  async (req, res) => {
+        if(req.params.SiteId) {
             try {
-                const time = await TimetableController.selectTimetableBySite(req.body.SiteId);
-                res.status(201).json(time);
+                const time = await TimetableController.selectTimetableBySite(req.params.SiteId);
+                res.status(200).json(time);
             } catch (err) {
                 res.status(409).end();
             }
@@ -40,7 +40,7 @@ module.exports = function (app) {
                                                                                    req.body.start_time,
                                                                                    req.body.end_time,
                                                                                    req.body.SiteId);
-                res.status(201).json(time);
+                res.status(200).json(time);
             } catch(err) {
                 res.status(409).end();
             }
@@ -49,12 +49,11 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/timetable/delete', bodyParser.json(), async (req, res) => {
-        if(req.body.id){
+    app.delete('/timetable/delete/:id', async (req, res) => {
+        if(req.params.id){
             try {
-                await TimetableController.deleteTimeTable(req.body.day_name,
-                                                          req.body.SiteId);
-                res.status(201).send("This timetable is deleted");
+                await TimetableController.deleteTimeTable(req.params.id);
+                res.status(200).send("This timetable is deleted");
             } catch (err) {
                 res.status(409).end();
             }

@@ -26,7 +26,7 @@ module.exports = function(app) {
             try  {
                 const session = await AuthController.login(req.body.email, req.body.password);
                 if(session) {
-                    res.status(201).json(session);
+                    res.status(200).json(session);
                 } else {
                     res.status(401).end();
                 }

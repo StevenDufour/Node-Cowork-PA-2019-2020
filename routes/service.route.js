@@ -24,7 +24,7 @@ module.exports = function (app) {
         if(req.params.id) {
             try {
                 const service = await ServiceController.selectServiceById(req.params.id);
-                res.status(201).json(service);
+                res.status(200).json(service);
             } catch (err) {
                 res.status(409).end();
             }
@@ -36,7 +36,7 @@ module.exports = function (app) {
     app.get('/api/service/getAll', bodyParser.json(), async (req, res) => {
         try{
             const services = await ServiceController.selectAllService();
-            res.status(201).json(services);
+            res.status(200).json(services);
         } catch(err) {
             res.status(409).end();
         }
@@ -51,7 +51,7 @@ module.exports = function (app) {
                     req.body.amount,
                     req.body.description,
                     req.body.price);
-                res.status(201).json(service);
+                res.status(200).json(service);
             } catch(err) {
                 res.status(409).end();
             }
@@ -64,7 +64,7 @@ module.exports = function (app) {
         if(req.params.id){
             try {
                 await ServiceController.deleteService(req.params.id);
-                res.status(201).send("This service is deleted");
+                res.status(200).send("This service is deleted");
             } catch (err) {
                 res.status(409).end();
             }

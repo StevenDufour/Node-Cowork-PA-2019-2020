@@ -3,10 +3,16 @@ const Subscription = models.Subscription;
 
 class SubController {
 
-    static createSub(name, description) {
+    static createSub(name, description, firstHour, nextHalfHour, dayPrice, withEngagement, withoutEngagement, numberOfEngagementMonth) {
         return Subscription.create({
             name,
-            description
+            description,
+            firstHour,
+            nextHalfHour,
+            dayPrice,
+            withEngagement,
+            withoutEngagement,
+            numberOfEngagementMonth
         });
     }
 
@@ -14,10 +20,24 @@ class SubController {
         return Subscription.findAll();
     }
 
-    static updateSub(id, name, description){
+    static selectSubById(id){
+        return Subscription.findOne({
+            where: {
+                id: id
+            }
+        });
+    }
+
+    static updateSub(id, name, description, firstHour, nextHalfHour, dayPrice, withEngagement, withoutEngagement, numberOfEngagementMonth){
         return Subscription.update({
             name:name,
-            description:description
+            description:description,
+            firstHour:firstHour,
+            nextHalfHour:nextHalfHour,
+            dayPrice:dayPrice,
+            withEngagement:withEngagement,
+            withoutEngagement:withoutEngagement,
+            numberOfEngagementMonth:numberOfEngagementMonth
         }, {
             where: {
                 id:id
