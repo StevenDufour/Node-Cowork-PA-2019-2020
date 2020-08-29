@@ -20,10 +20,10 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/api/service/getById', bodyParser.json(), async (req, res) => {
-        if(req.body.id) {
+    app.get('/api/service/getById/:id', async (req, res) => {
+        if(req.params.id) {
             try {
-                const service = await ServiceController.selectServiceById(req.body.id);
+                const service = await ServiceController.selectServiceById(req.params.id);
                 res.status(201).json(service);
             } catch (err) {
                 res.status(409).end();
@@ -60,10 +60,10 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/api/service/delete', bodyParser.json(), async (req, res) => {
-        if(req.body.id){
+    app.delete('/api/service/delete/:id', async (req, res) => {
+        if(req.params.id){
             try {
-                await ServiceController.deleteService(req.body.id);
+                await ServiceController.deleteService(req.params.id);
                 res.status(201).send("This service is deleted");
             } catch (err) {
                 res.status(409).end();

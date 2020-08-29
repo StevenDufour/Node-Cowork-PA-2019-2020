@@ -20,10 +20,10 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/api/product/getById', bodyParser.json(), async (req, res) => {
-        if(req.body.id) {
+    app.get('/api/product/getById/:id', async (req, res) => {
+        if(req.params.id) {
             try {
-                const product = await ProductController.selectProductById(req.body.id);
+                const product = await ProductController.selectProductById(req.params.id);
                 res.status(201).json(product);
             } catch (err) {
                 res.status(409).end();
@@ -74,10 +74,10 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/api/product/delete', bodyParser.json(), async (req, res) => {
-            if(req.body.id){
+    app.delete('/api/product/delete/:id', async (req, res) => {
+            if(req.params.id){
                 try {
-                    await ProductController.deleteProduct(req.body.id);
+                    await ProductController.deleteProduct(req.params.id);
                     res.status(201).send("This product is deleted");
                 } catch (err) {
                     res.status(409).end();

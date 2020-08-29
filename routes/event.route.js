@@ -19,10 +19,10 @@ module.exports = function(app) {
         }
     });
 
-    app.post('/api/event/getById', bodyParser.json(), async (req, res) => {
-        if(req.body.id) {
+    app.get('/api/event/getById/:id', async (req, res) => {
+        if(req.params.id) {
             try {
-                const event = await EventController.selectEventById(req.body.id);
+                const event = await EventController.selectEventById(req.params.id);
                 res.status(201).json(event);
             } catch (err) {
                 res.status(409).end();
@@ -58,10 +58,10 @@ module.exports = function(app) {
         }
     });
 
-    app.delete('/api/event/delete', bodyParser.json(), async (req, res) => {
-        if(req.body.id){
+    app.delete('/api/event/delete/:id', async (req, res) => {
+        if(req.params.id){
             try {
-                await EventController.deleteEvent(req.body.id);
+                await EventController.deleteEvent(req.params.id);
                 res.status(201).send("This event is deleted");
             } catch (err) {
                 res.status(409).end();

@@ -3,7 +3,7 @@ const Service = models.Service;
 
 class ServiceController {
 
-    static createService(name, amount, type, description, price){
+    static createService(name, type, amount, description, price){
         return Service.create({
             name:name,
             type:type,
