@@ -3,10 +3,10 @@ const UserController = require('../controllers').UserController;
 
 module.exports = function(app) {
 
-    app.post('/api/user/getById', bodyParser.json(), async (req, res) => {
-        if(req.body.id) {
+    app.get('/api/user/getById/:id', async (req, res) => {
+        if(req.params.id) {
             try {
-                const user = await UserController.selectUserById(req.body.id);
+                const user = await UserController.selectUserById(req.params.id);
                 res.status(201).json(user);
             } catch (err) {
                 res.status(409).end();
@@ -57,10 +57,10 @@ module.exports = function(app) {
         }
     });
 
-    app.delete('/api/user/delete', bodyParser.json(), async (req, res) => {
-        if(req.body.id){
+    app.delete('/api/user/delete/:id', async (req, res) => {
+        if(req.params.id){
             try {
-                await UserController.deleteUser(req.body.id);
+                await UserController.deleteUser(req.params.id);
                 res.status(201).send("This user is deleted");
             } catch (err) {
                 res.status(409).end();
