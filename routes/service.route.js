@@ -64,7 +64,7 @@ module.exports = function (app) {
         if(req.body.id){
             try {
                 await ServiceController.deleteService(req.body.id);
-                res.status(201).send("This product is deleted");
+                res.status(201).send("This service is deleted");
             } catch (err) {
                 res.status(409).end();
             }

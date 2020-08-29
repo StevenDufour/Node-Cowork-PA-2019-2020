@@ -25,25 +25,29 @@ class AuthController {
     }
 
     /**
-     * @param login
+     * @param email
      * @param password
      * @returns {Promise<Session|null>}
      */
-    static async login(login, password) {
+    static async login(email, password) {
         const user = await User.findOne({
             where: {
-                login,
+                email,
                 password: SecurityUtil.hashPassword(password)
             }
         });
         if(!user) {
             return null;
         }
-        const token = await SecurityUtil.randomToken();
-        const session = await Session.create({
-            token
-        });
-        await session.setUser(user);
+        let session = await this.sessionOfUser(user.id);
+        if(!session){
+            const token = await SecurityUtil.randomToken();
+            session = await Session.create({
+                token,
+                UserId: user.id
+            });
+        }
+        await session.set(user);
         return session;
     }
 
@@ -58,7 +62,7 @@ class AuthController {
                 UserId : user.id
             }
         });
-        await Session.destroy({
+        await session.destroy({
             where:{
                 UserId : user.id
             }
@@ -71,6 +75,17 @@ class AuthController {
                 model: Session,
                 where: {
                     token
+                }
+            }]
+        });
+    }
+
+    static  sessionOfUser(id) {
+        return User.findOne({
+            include: [{
+                model: Session,
+                where: {
+                    UserId: id
                 }
             }]
         });

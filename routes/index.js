@@ -8,4 +8,5 @@ module.exports = function () {
     require('./timetable.route')(...arguments);
     require('./invitation.route')(...arguments);
     require('./order.route')(...arguments);
+    require('./service.route')(...arguments);
 }
