@@ -10,10 +10,10 @@ services:
     environment:
       - PORT=${PORT:-3000}
       - ENVIRONMENT=${ENVIRONMENT:-dev}
-      - POSTGRES_HOST=${DB_HOST:-db}
-      - POSTGRES_PASSWORD=${DB_PASSWORD:-nodeProject}
-      - POSTGRES_USER=${DB_USER:-admin}
-      - POSTGRES_DB=${DB_NAME:-cowork}
+      - POSTGRES_HOST=${DB_HOST:-ec2-34-252-251-16.eu-west-1.compute.amazonaws.com}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-b42c46361b575b98960779a73a76c4b0ddeba01e2a530ecefe1f50d7ae1a8815}
+      - POSTGRES_USER=${DB_USER:-pukveayvsujzgf}
+      - POSTGRES_DB=${DB_NAME:-d8sr8q42r2q5m6}
       - POSTGRES_PORT=${DB_PORT:-5432}
     volumes:
       - .:/usr/src/app
@@ -24,9 +24,9 @@ services:
     restart: always
     image: postgres:latest
     environment:
-      - POSTGRES_PASSWORD=${DB_PASSWORD:-nodeProject}
-      - POSTGRES_USER=${DB_USER:-admin}
-      - POSTGRES_DB=${DB_NAME:-cowork}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-b42c46361b575b98960779a73a76c4b0ddeba01e2a530ecefe1f50d7ae1a8815}
+      - POSTGRES_USER=${DB_USER:-pukveayvsujzgf}
+      - POSTGRES_DB=${DB_NAME:-d8sr8q42r2q5m6}
     volumes:
       - dbdata:/var/lib/postgresql/data
     ports:
