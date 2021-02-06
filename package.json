@@ -2,7 +2,8 @@
   "name": "cowork",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "startDev": "nodemon"
   },
   "keywords": [],
   "author": "",
