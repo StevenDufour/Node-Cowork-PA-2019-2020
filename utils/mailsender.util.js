@@ -6,7 +6,7 @@ class MailsenderUtil {
 
         const transporter = AWS.createTransport({
             host: "email-smtp.eu-west-3.amazonaws.com",
-            secure: true,
+            secure: false,
             port: "587",
             auth: {
                 user: "AKIAV37KVRO3V44RUAYE",
