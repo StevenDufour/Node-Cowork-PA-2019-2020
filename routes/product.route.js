@@ -12,7 +12,7 @@ module.exports = function (app) {
                     req.body.description,
                     req.body.price,
                     req.body.amount);
-                await MailsenderUtil.sendCreatedProductMail();
+                await MailsenderUtil.sendCreatedProductMail(req.body.name);
                 res.status(201).json(product);
 
             } catch (err) {
