@@ -11,6 +11,7 @@ class ProductController {
             price,
             amount
         });
+
     }
 
     static selectProductById(id){

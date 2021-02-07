@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const ProductController = require('../controllers').ProductController;
+const MailsenderUtil = require('../utils').MailsenderUtil;
 
 module.exports = function (app) {
 
@@ -11,7 +12,9 @@ module.exports = function (app) {
                     req.body.description,
                     req.body.price,
                     req.body.amount);
+                await MailsenderUtil.sendCreatedProductMail();
                 res.status(201).json(product);
+
             } catch (err) {
                 res.status(409).end();
             }
